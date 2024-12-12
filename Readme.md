@@ -1,13 +1,8 @@
 ## Installation and setup 
 
-Clone Repository 
+Clone Repository and move into it
 ```
-git clone https://github.com/Drooggie/template-docker-laravel.git
-``` 
-
-Move into Repository 
-```
-cd template-docker-laravel
+git clone https://github.com/Drooggie/livewire-cashier.git && cd livewire-cashier
 ``` 
 
 
