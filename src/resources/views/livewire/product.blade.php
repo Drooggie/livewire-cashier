@@ -1,14 +1,14 @@
 <div class="grid grid-cols-2 gap-10 mt-10">
 
-    <div class="space-y-4" x-data="{image: '{{Storage::url($product->image->path)}}'}">
+    <div class="space-y-4" x-data="{ image: '{{ url($product->image->path) }}' }">
         <div class="bg-white p-4 rounded-xl shadow-xl">
             <img x-bind:src="image" alt="">
         </div>
-    
+
         <div class="grid grid-cols-4 gap-4">
             @foreach ($product->images as $image)
                 <div class="bg-white p-2 rounded-md shadow-md">
-                    <img @click="image = '{{Storage::url($image->path)}}'" src="{{Storage::url($image->path)}}" alt="">
+                    <img @click="image = '{{ $image->path }}'" src="{{ url($image->path) }}" alt="">
                 </div>
             @endforeach
         </div>
@@ -16,10 +16,10 @@
 
     <div class="">
         <h1 class="font-medium text-5xl">
-            {{$product->name}}
+            {{ $product->name }}
         </h1>
         <span class="text-xl text-gray-700">
-            {{$product->price}}
+            {{ $product->price }}
         </span>
 
         <div class="mt-4">
