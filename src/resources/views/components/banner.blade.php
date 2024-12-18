@@ -2,7 +2,7 @@
 
 <div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
     :class="{ 'bg-indigo-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-yellow-500': style == 'warning', 'bg-gray-500': style != 'success' && style != 'danger' && style != 'warning'}"
-            style="display: none;"
+            style="display: none; position: fixed; bottom: 0px; left: 0; width: 100%;"
             x-show="show && message"
             x-on:banner-message.window="
                 style = event.detail.style;
@@ -11,7 +11,7 @@
 
                 setTimeout(function() {
                     show = false;
-                }, 2000);
+                }, 5000);
             ">
     <div class="max-w-screen-xl mx-auto py-2 px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">

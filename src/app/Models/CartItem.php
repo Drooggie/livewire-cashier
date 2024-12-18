@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,15 @@ class CartItem extends Model
         'product_variant_id',
         'quantity',
     ];
+
+    public function subTotal(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->variant->product->price->multiply($this->quantity);
+            }
+        );
+    }
 
     public function variant(): BelongsTo
     {

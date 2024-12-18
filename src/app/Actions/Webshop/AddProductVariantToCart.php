@@ -9,17 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AddProductVariantToCart
 {
-    public $variantId;
 
-    public function add($variantId)
+    public function add($variantId, $quantity = 0, $userCart = null)
     {
-        $this->variantId = $variantId;
-
-        $cart = CartFactory::make();
+        $cart = $userCart ?: CartFactory::make();
 
         $cart->items()->FirstOrCreate(
             ['product_variant_id' => $variantId],
-            ['quantity' => 0]
+            ['quantity' => $quantity]
         )->increment('quantity');
     }
 }

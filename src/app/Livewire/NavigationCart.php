@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Factories\CartFactory;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class NavigationCart extends Component

@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Money\Currency;
+use Money\Money;
 
 class Cart extends Model
 {
@@ -15,6 +18,17 @@ class Cart extends Model
         'user_id',
         'session_id',
     ];
+
+    public function total(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->items->reduce(function (Money $total, CartItem $item) {
+                    return $total->add($item->subTotal);
+                }, new Money(0, new Currency('USD')));
+            }
+        );
+    }
 
     public function items(): HasMany
     {

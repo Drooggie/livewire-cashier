@@ -3,9 +3,6 @@
 namespace App\Livewire;
 
 use App\Factories\CartFactory;
-use App\Models\Cart as ModelsCart;
-use App\Models\CartItem;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -13,18 +10,51 @@ class Cart extends Component
 {
     use InteractsWithBanner;
 
-    public $cartId;
+    protected $listeners = [
+        'totalAmountUpdated' => '$refresh'
+    ];
 
-    public function make(ModelsCart $cart) {}
+    public function getCartProperty()
+    {
+        return CartFactory::make()->loadMissing(['items', 'items.variant', 'items.variant.product']);
+    }
 
     public function getItemsProperty()
     {
-        return CartFactory::make()->items()->with('variant.product')->latest()->get();
+        return $this->cart->items()->latest()->get();
+    }
+
+    public function getTotalProperty()
+    {
+        return $this->cart->total;
+    }
+
+    public function increment($itemId)
+    {
+        $this->items->find($itemId)->increment('quantity');
+
+        $this->dispatch('totalAmountUpdated');
+        $this->dispatch('productAdded');
+    }
+
+    public function decrement($itemId)
+    {
+        $item = $this->items->find($itemId);
+
+        $item->decrement('quantity');
+        $itemQuantity = $item->quantity;
+
+        if ($itemQuantity === 0) {
+            $item->delete();
+        }
+
+        $this->dispatch('totalAmountUpdated');
+        $this->dispatch('ItemDeleted');
     }
 
     public function delete($itemId)
     {
-        $cartItem = CartFactory::make()->items();
+        $cartItem = $this->cart->items();
 
         $cartItem->findOrFail($itemId)->delete();
 
