@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Actions\Webshop\CheckoutThrowStripe;
 use App\Factories\CartFactory;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
@@ -13,6 +15,11 @@ class Cart extends Component
     protected $listeners = [
         'totalAmountUpdated' => '$refresh'
     ];
+
+    public function checkout(CheckoutThrowStripe $cashier)
+    {
+        return $cashier->checkout($this->cart);
+    }
 
     public function getCartProperty()
     {

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Cashier\Cashier;
 use Laravel\Fortify\Fortify;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
@@ -30,17 +31,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Cashier::calculateTaxes();
+
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
-
-            $cart = CartFactory::make();
-            $userCart = $user?->cart ?: $user->cart()->create();
-
 
             if (
                 $user &&
                 Hash::check($request->password, $user->password)
             ) {
+                $cart = CartFactory::make();
+                $userCart = $user?->cart ?: $user->cart()->create();
+
                 (new MigrateCartItems)->migrate($cart, $userCart);
                 return $user;
             }

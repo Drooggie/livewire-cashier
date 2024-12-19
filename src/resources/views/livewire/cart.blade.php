@@ -59,7 +59,7 @@
         @endguest
         @auth
             <div class="flex items-center justify-center h-full">
-                <x-button class="h-8 text-center">Purchase</x-button>
+                <x-button class="h-8 text-center" wire:click='checkout'>Purchase</x-button>
             </div>
         @endauth
     </div>

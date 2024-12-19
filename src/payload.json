@@ -1,0 +1,151 @@
+{
+    "api_version": "2024-11-20.acacia",
+    "created": 1734586136,
+    "data": {
+        "object": {
+            "adaptive_pricing": {
+                "enabled": false
+            },
+            "after_expiration": null,
+            "allow_promotion_codes": true,
+            "amount_subtotal": 33744,
+            "amount_total": 33744,
+            "automatic_tax": {
+                "enabled": true,
+                "liability": {
+                    "type": "self"
+                },
+                "status": "complete"
+            },
+            "billing_address_collection": null,
+            "cancel_url": "http://localhost:8888/home?checkout=cancelled",
+            "client_reference_id": null,
+            "client_secret": null,
+            "consent": null,
+            "consent_collection": null,
+            "created": 1734586108,
+            "currency": "usd",
+            "currency_conversion": null,
+            "custom_fields": [],
+            "custom_text": {
+                "after_submit": null,
+                "shipping_address": null,
+                "submit": null,
+                "terms_of_service_acceptance": null
+            },
+            "customer": "cus_RQC2HFxcYXiqgD",
+            "customer_creation": null,
+            "customer_details": {
+                "address": {
+                    "city": "Almaty",
+                    "country": "KZ",
+                    "line1": "oraz street 69",
+                    "line2": null,
+                    "postal_code": "140000",
+                    "state": "Almaty"
+                },
+                "email": "oraznorlan2@gmail.com",
+                "name": "Oraz",
+                "phone": null,
+                "tax_exempt": "none",
+                "tax_ids": []
+            },
+            "customer_email": null,
+            "expires_at": 1734672508,
+            "id": "cs_test_b1YRmR9xKNzPvEbSUHogpQg9eStxc7aPkjubK5LkyBxnYFxFbovSo5TBmY",
+            "invoice": null,
+            "invoice_creation": {
+                "enabled": false,
+                "invoice_data": {
+                    "account_tax_ids": null,
+                    "custom_fields": null,
+                    "description": null,
+                    "footer": null,
+                    "issuer": null,
+                    "metadata": {},
+                    "rendering_options": null
+                }
+            },
+            "livemode": false,
+            "locale": null,
+            "metadata": {},
+            "mode": "payment",
+            "object": "checkout.session",
+            "payment_intent": "pi_3QXcI6LIKLubt7qS0prRccFH",
+            "payment_link": null,
+            "payment_method_collection": "if_required",
+            "payment_method_configuration_details": {
+                "id": "pmc_1QUMJJLIKLubt7qSsexOYl5E",
+                "parent": null
+            },
+            "payment_method_options": {
+                "card": {
+                    "request_three_d_secure": "automatic"
+                }
+            },
+            "payment_method_types": [
+                "card",
+                "link",
+                "cashapp",
+                "amazon_pay"
+            ],
+            "payment_status": "paid",
+            "phone_number_collection": {
+                "enabled": false
+            },
+            "recovered_from": null,
+            "saved_payment_method_options": {
+                "allow_redisplay_filters": [
+                    "always"
+                ],
+                "payment_method_remove": null,
+                "payment_method_save": null
+            },
+            "setup_intent": null,
+            "shipping_address_collection": {
+                "allowed_countries": [
+                    "US",
+                    "NL",
+                    "KZ"
+                ]
+            },
+            "shipping_cost": null,
+            "shipping_details": {
+                "address": {
+                    "city": "Almaty",
+                    "country": "KZ",
+                    "line1": "oraz street 69",
+                    "line2": null,
+                    "postal_code": "140000",
+                    "state": "Almaty"
+                },
+                "name": "Oraz"
+            },
+            "shipping_options": [],
+            "status": "complete",
+            "submit_type": null,
+            "subscription": null,
+            "success_url": "http://localhost:8888/home?checkout=success",
+            "tax_id_collection": {
+                "enabled": true,
+                "required": "never"
+            },
+            "total_details": {
+                "amount_discount": 0,
+                "amount_shipping": 0,
+                "amount_tax": 0
+            },
+            "ui_mode": "hosted",
+            "url": null
+        }
+    },
+    "id": "evt_1QXcI8LIKLubt7qS6I1jR5XO",
+    "livemode": false,
+    "object": "event",
+    "pending_webhooks": 2,
+    "request": {
+        "id": null,
+        "idempotency_key": null
+    },
+    "type": "checkout.session.completed"
+}
