@@ -38,7 +38,10 @@ class Cart extends Component
 
     public function increment($itemId)
     {
-        $this->items->find($itemId)->increment('quantity');
+        $item = $this->items->find($itemId);
+
+        $item->increment('quantity');
+        $item->touch();
 
         $this->dispatch('totalAmountUpdated');
         $this->dispatch('productAdded');
@@ -49,6 +52,7 @@ class Cart extends Component
         $item = $this->items->find($itemId);
 
         $item->decrement('quantity');
+        $item->touch();
         $itemQuantity = $item->quantity;
 
         if ($itemQuantity === 0) {

@@ -1,4 +1,9 @@
 <div class="grid grid-cols-4 gap-4 mt-4">
+
+    @if (session('error'))
+        <div class="alert">{{ session('error') }}</div>
+    @endif
+
     @foreach ($this->products as $product)
         <div class="bg-white p-4 rounded-xl shadow-xl relative">
             <a href="{{ route('product', $product) }}" class="absolute inset-0 w-full h-full"></a>

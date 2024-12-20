@@ -10,6 +10,7 @@ chown -R www-data:www-data /var/www/storage
 
 if [ ! -d "vendor" ]; then
     composer install --no-interaction --prefer-dist
+    composer require predis/predis
 fi
 
 if [ ! -d "node_modules" ]; then

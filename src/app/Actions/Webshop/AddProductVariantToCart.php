@@ -14,9 +14,12 @@ class AddProductVariantToCart
     {
         $cart = $userCart ?: CartFactory::make();
 
-        $cart->items()->FirstOrCreate(
+        $items = $cart->items()->FirstOrCreate(
             ['product_variant_id' => $variantId],
             ['quantity' => $quantity]
-        )->increment('quantity');
+        );
+
+        $items->increment('quantity');
+        $items->touch();
     }
 }

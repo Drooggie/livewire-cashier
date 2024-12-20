@@ -11,8 +11,15 @@ class CheckoutThrowStripe
 {
     public function checkout(Cart $cart)
     {
+        $lineitems = $this->formatFromCart($cart->items);
+
+        if (!$lineitems) {
+            return redirect()->route('home')
+                ->with('error', 'Your cart is empty. Please choose product and process payment process.');
+        }
+
         return $cart->user->allowPromotionCodes()->checkout(
-            $this->formatFromCart($cart->items),
+            $lineitems,
             [
                 'customer_update' => [
                     'shipping' => 'auto',

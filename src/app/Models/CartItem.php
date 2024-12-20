@@ -19,6 +19,10 @@ class CartItem extends Model
         'quantity',
     ];
 
+    protected $touches = [
+        'cart'
+    ];
+
     public function subTotal(): Attribute
     {
         return Attribute::make(
@@ -26,6 +30,11 @@ class CartItem extends Model
                 return $this->variant->product->price->multiply($this->quantity);
             }
         );
+    }
+
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class);
     }
 
     public function variant(): BelongsTo

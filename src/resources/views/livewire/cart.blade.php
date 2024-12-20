@@ -1,5 +1,5 @@
 <div class="mt-12 grid grid-cols-4 gap-4">
-    
+
     <div class="bg-white rounded-lg shadow p-6 col-span-3 grid">
         <table class="col-3">
             <thead>

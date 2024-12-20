@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Money\Currencies\ISOCurrencies;
 use Money\Currency;
-use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
 
 class Product extends Model
@@ -17,18 +16,13 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
+    public $casts = [
+        'price' => MoneyCast::class,
+    ];
+
     public function variants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
-    }
-
-    protected function price(): Attribute
-    {
-        return Attribute::make(
-            get: function (int $amount) {
-                return new Money($amount, new Currency('USD'));
-            }
-        );
     }
 
     public function image(): HasOne
